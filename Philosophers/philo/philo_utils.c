@@ -3,70 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 08:37:57 by ivaliev           #+#    #+#             */
-/*   Updated: 2023/11/01 13:24:23 by adurusoy         ###   ########.fr       */
+/*   Created: 2023/11/02 10:04:54 by adurusoy          #+#    #+#             */
+/*   Updated: 2023/11/02 10:04:54 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdlib.h>
 
-long long int	ft_atoi(const char *str)
+int	philo_atoi(char *str)
 {
-	long long int	c;
-	int				b;
-	int				d;
+	int			i;
+	long int	n;
 
-	b = 0;
-	c = 0;
-	d = 0;
-	while (str[b] == 32 || (str[b] <= 13 && str[b] >= 9))
-		b++;
-	if (str[b] == '-' || str[b] == '+')
+	i = 0;
+	n = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		d = b;
-		b++;
+		n = n * 10 + str[i] - '0';
+		i++;
 	}
-	while (str[b] == 48)
-		b++;
-	while (str[b] < 58 && str[b] > 47)
-	{
-		c = (c * 10) + (str[b] - 48);
-		b++;
-	}
-	if (str[d] == '-')
-		c = -c;
-	return (c);
-}
-
-int	ft_strlen(char *a)
-{
-	int	b;
-
-	if (!a)
+	if (n < 0 || ((str[i] < '0' || str[i] > '9') && str[i] != '\0')
+		|| n > INT_MAX)
 		return (0);
-	b = 0;
-	while (a[b])
-		b++;
-	return (b);
+	return (n);
 }
 
-void	print(t_philo *philo, int id, char *is_doing)
+int	philo_strncmp(const char *s1, const char *s2, size_t n)
 {
-	pthread_mutex_lock(&(philo->info->printig));
-	if (!ft_check_died(philo))
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	i = 0;
+	while ((str1[i] != '\0' || str2[i] != '\0') && i < n)
 	{
-		printf("%lli %i %s\n", get_time() - philo->info->start_time,
-			id + 1, is_doing);
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
 	}
-	pthread_mutex_unlock(&(philo->info->printig));
+	return (0);
 }
 
-long long	get_time(void)
+int	philo_strlen(const char *str)
 {
-	struct timeval	tv;
+	int	size;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	size = 0;
+	while (str[size] != '\0')
+	{
+		size++;
+	}
+	return (size);
+}
+
+void	philo_free(t_main *main)
+{
+	free(main->philo);
+	free(main->forks);
 }

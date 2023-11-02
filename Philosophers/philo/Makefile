@@ -3,20 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ivaliev <ivaliev@student.42.fr>            +#+  +:+       +#+         #
+#    By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/13 08:37:49 by ivaliev           #+#    #+#              #
-#    Updated: 2023/01/13 08:37:50 by ivaliev          ###   ########.fr        #
+#    Created: 2021/10/14 20:22:14 by anolivei          #+#    #+#              #
+#    Updated: 2023/11/02 19:39:47 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-
 NAME = philo
-SRC = philo.c philo_utils.c start_prog.c initialize.c check_done_eat_and_die.c routine.c
+SRC =	actions.c \
+		handling_errors.c \
+		handling_forks.c \
+		handling_philos.c \
+		handling_threads.c \
+		handling_time.c \
+		main.c \
+		philo_utils.c \
+		routine.c
 OBJS = $(SRC:.c=.o)
 CC = gcc -pthread
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 all: ${NAME}
 
@@ -27,9 +33,11 @@ ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
-	rm -f *.o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
+
+.PONY: all clean fclean re
