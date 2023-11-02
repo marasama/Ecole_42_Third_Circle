@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:04:38 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/11/02 10:04:39 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:56:04 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,16 @@ long long	delta_time(long long time)
 	return (0);
 }
 
+void	ft_usleep(long long time)
+{
+	long long	start;
+
+	start = get_time() + time;
+	while (get_time() <= start)
+		usleep(500);
+}
+
 void	exec_action(long long time)
 {
-	usleep(time * 1000);
+	ft_usleep(time);
 }

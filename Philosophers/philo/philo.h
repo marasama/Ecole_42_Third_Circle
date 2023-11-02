@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:03:47 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/11/02 17:10:31 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:31:19 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ void		*routine(void *args);
 int			routine_execute(t_main *main, int i);
 void		*checker(void *args);
 int			philo_print(t_main *main, int id, char *color, char *status);
+void		ft_usleep(long long time);
 
 #endif

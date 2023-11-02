@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:04:30 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/11/02 12:39:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:55:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	create_threads(t_main *main)
 				NULL, &routine, (void *) main) != 0)
 			return (FALSE);
 		i++;
-		usleep(1000);
+		usleep(300);
 	}
 	if (pthread_create(&main->orchestrator, NULL, &checker, (void *) main) != 0)
 		return (FALSE);
-	usleep(1000);
+	usleep(300);
 	if (join_threads(main) == FALSE)
 		return (FALSE);
 	return (TRUE);

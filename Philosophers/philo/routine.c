@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:05:05 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/11/02 18:55:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:56:57 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	*checker(void *args)
 		{
 			if (philo_is_dead(main, &i) == TRUE)
 				break ;
+			ft_usleep(5);
 		}
 	}
 	else
@@ -73,6 +74,7 @@ void	*checker(void *args)
 		{
 			if (philo_is_dead(main, &i) == TRUE)
 				break ;
+			ft_usleep(5);
 		}
 	}
 	return (NULL);
